@@ -1,8 +1,20 @@
-/home/jose-ignacio/Desktop/Taller Patrones de Diseño/src/main/java/com/taller/patrones/interfaces/rest/BattleController.java
-/home/jose-ignacio/Desktop/Taller Patrones de Diseño/src/main/java/com/taller/patrones/domain/Battle.java
-/home/jose-ignacio/Desktop/Taller Patrones de Diseño/src/main/java/com/taller/patrones/infrastructure/persistence/BattleRepository.java
-/home/jose-ignacio/Desktop/Taller Patrones de Diseño/src/main/java/com/taller/patrones/application/BattleService.java
-/home/jose-ignacio/Desktop/Taller Patrones de Diseño/src/main/java/com/taller/patrones/domain/Character.java
-/home/jose-ignacio/Desktop/Taller Patrones de Diseño/src/main/java/com/taller/patrones/infrastructure/combat/CombatEngine.java
-/home/jose-ignacio/Desktop/Taller Patrones de Diseño/src/main/java/com/taller/patrones/CombatSimulatorApplication.java
-/home/jose-ignacio/Desktop/Taller Patrones de Diseño/src/main/java/com/taller/patrones/domain/Attack.java
+C:\Users\ianam\Desktop\US\Next\dragon-quest-patrones-de-dise-o\src\main\java\com\taller\patrones\infrastructure\combat\NormalDamageStrategy.java
+C:\Users\ianam\Desktop\US\Next\dragon-quest-patrones-de-dise-o\src\main\java\com\taller\patrones\interfaces\rest\adapter\NestedBattleRequestAdapter.java
+C:\Users\ianam\Desktop\US\Next\dragon-quest-patrones-de-dise-o\src\main\java\com\taller\patrones\infrastructure\combat\CriticalDamageStrategy.java
+C:\Users\ianam\Desktop\US\Next\dragon-quest-patrones-de-dise-o\src\main\java\com\taller\patrones\infrastructure\combat\DefaultAttackFactory.java
+C:\Users\ianam\Desktop\US\Next\dragon-quest-patrones-de-dise-o\src\main\java\com\taller\patrones\interfaces\rest\adapter\ExternalBattleRequestAdapter.java
+C:\Users\ianam\Desktop\US\Next\dragon-quest-patrones-de-dise-o\src\main\java\com\taller\patrones\interfaces\rest\adapter\ExternalBattleRequestAdapterRegistry.java
+C:\Users\ianam\Desktop\US\Next\dragon-quest-patrones-de-dise-o\src\main\java\com\taller\patrones\infrastructure\combat\StatusDamageStrategy.java
+C:\Users\ianam\Desktop\US\Next\dragon-quest-patrones-de-dise-o\src\main\java\com\taller\patrones\interfaces\rest\adapter\SnakeCaseBattleRequestAdapter.java
+C:\Users\ianam\Desktop\US\Next\dragon-quest-patrones-de-dise-o\src\main\java\com\taller\patrones\domain\Attack.java
+C:\Users\ianam\Desktop\US\Next\dragon-quest-patrones-de-dise-o\src\main\java\com\taller\patrones\infrastructure\combat\AttackFactory.java
+C:\Users\ianam\Desktop\US\Next\dragon-quest-patrones-de-dise-o\src\main\java\com\taller\patrones\infrastructure\persistence\BattleRepository.java
+C:\Users\ianam\Desktop\US\Next\dragon-quest-patrones-de-dise-o\src\main\java\com\taller\patrones\domain\Character.java
+C:\Users\ianam\Desktop\US\Next\dragon-quest-patrones-de-dise-o\src\main\java\com\taller\patrones\infrastructure\combat\CombatEngine.java
+C:\Users\ianam\Desktop\US\Next\dragon-quest-patrones-de-dise-o\src\main\java\com\taller\patrones\interfaces\rest\adapter\ExternalBattleStartRequest.java
+C:\Users\ianam\Desktop\US\Next\dragon-quest-patrones-de-dise-o\src\main\java\com\taller\patrones\CombatSimulatorApplication.java
+C:\Users\ianam\Desktop\US\Next\dragon-quest-patrones-de-dise-o\src\main\java\com\taller\patrones\infrastructure\combat\SpecialDamageStrategy.java
+C:\Users\ianam\Desktop\US\Next\dragon-quest-patrones-de-dise-o\src\main\java\com\taller\patrones\application\BattleService.java
+C:\Users\ianam\Desktop\US\Next\dragon-quest-patrones-de-dise-o\src\main\java\com\taller\patrones\domain\Battle.java
+C:\Users\ianam\Desktop\US\Next\dragon-quest-patrones-de-dise-o\src\main\java\com\taller\patrones\interfaces\rest\BattleController.java
+C:\Users\ianam\Desktop\US\Next\dragon-quest-patrones-de-dise-o\src\main\java\com\taller\patrones\infrastructure\combat\DamageStrategy.java
