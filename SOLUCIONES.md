@@ -222,7 +222,24 @@ Ahora el ataque se ejecuta directamente en `applyDamage()`. No hay registro de "
 Ahora cada ataque es independiente. No hay forma de agrupar varios.
 
 **Preguntas:**
-- ¿Cómo representar "un ataque que son varios ataques"?
-- ¿Qué patrón permite tratar un grupo de objetos igual que un objeto individual?
 
 **Pista:** `Attack` es una unidad. ¿Cómo hacer que varios `Attack` se comporten como uno?
+
+#### Solución:
+
+1. **¿Cómo representar "un ataque que son varios ataques"?**
+	Se puede crear una clase que agrupe varios ataques y los ejecute en secuencia. Así, un ataque compuesto puede contener otros ataques simples o compuestos.
+
+2. **¿Qué patrón permite tratar un grupo de objetos igual que un objeto individual?**
+	El patrón adecuado es **Composite**. Permite que tanto ataques simples como compuestos implementen la misma interfaz, de modo que el motor de combate pueda ejecutar un ataque compuesto igual que uno simple.
+
+**Ventajas:**
+ - Permite crear combos, secuencias o ataques agrupados sin modificar el motor.
+ - Los ataques compuestos pueden contener otros compuestos, creando estructuras flexibles.
+ - El código es extensible y desacoplado.
+
+**Implementación en el código:**
+ - Se crea una interfaz o clase abstracta `AttackComponent` (o se usa la propia `Attack` si se adapta).
+ - Los ataques simples implementan/extend `AttackComponent`.
+ - Se crea una clase `CompositeAttack` que contiene una lista de ataques y ejecuta todos en orden.
+ - El motor de combate puede recibir un `CompositeAttack` y ejecutarlo igual que un ataque simple.

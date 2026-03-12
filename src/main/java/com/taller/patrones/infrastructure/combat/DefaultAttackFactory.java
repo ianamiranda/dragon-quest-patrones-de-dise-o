@@ -16,14 +16,16 @@ public class DefaultAttackFactory implements AttackFactory {
     private final Map<String, Supplier<Attack>> attackRegistry = new HashMap<>();
 
     public DefaultAttackFactory() {
-        register("TACKLE", () -> new Attack("Tackle", 40, Attack.AttackType.NORMAL));
-        register("SLASH", () -> new Attack("Slash", 55, Attack.AttackType.NORMAL));
-        register("FIREBALL", () -> new Attack("Fireball", 80, Attack.AttackType.SPECIAL));
-        register("ICE_BEAM", () -> new Attack("Ice Beam", 70, Attack.AttackType.SPECIAL));
-        register("POISON_STING", () -> new Attack("Poison Sting", 20, Attack.AttackType.STATUS));
-        register("THUNDER", () -> new Attack("Thunder", 90, Attack.AttackType.SPECIAL));
-        register("METEORO", () -> new Attack("Meteoro", 120, Attack.AttackType.SPECIAL));
-        register("CRITICAL_STRIKE", () -> new Attack("Critical Strike", 90, Attack.AttackType.CRITICAL));
+           register("TACKLE", () -> new Attack("Tackle", 40, Attack.AttackType.NORMAL));
+           register("SLASH", () -> new Attack("Slash", 55, Attack.AttackType.NORMAL));
+           register("FIREBALL", () -> new Attack("Fireball", 80, Attack.AttackType.SPECIAL));
+           register("ICE_BEAM", () -> new Attack("Ice Beam", 70, Attack.AttackType.SPECIAL));
+           register("POISON_STING", () -> new Attack("Poison Sting", 20, Attack.AttackType.STATUS));
+           register("THUNDER", () -> new Attack("Thunder", 90, Attack.AttackType.SPECIAL));
+           register("METEORO", () -> new Attack("Meteoro", 120, Attack.AttackType.SPECIAL));
+           register("CRITICAL_STRIKE", () -> new Attack("Critical Strike", 90, Attack.AttackType.CRITICAL));
+           // Composite: Combo Triple
+           register("COMBO_TRIPLE", () -> null); // handled in BattleService
     }
 
     @Override

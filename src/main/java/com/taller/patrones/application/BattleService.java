@@ -75,12 +75,24 @@ public class BattleService {
     }
 
     public void executePlayerAttack(String battleId, String attackName) {
-        Battle battle = battleRepository.findById(battleId);
-        if (battle == null || battle.isFinished() || !battle.isPlayerTurn()) return;
+            Battle battle = battleRepository.findById(battleId);
+            if (battle == null || battle.isFinished() || !battle.isPlayerTurn()) return;
 
-        Attack attack = combatEngine.createAttack(attackName);
-        int damage = combatEngine.calculateDamage(battle.getPlayer(), battle.getEnemy(), attack);
-        applyDamage(battle, battle.getPlayer(), battle.getEnemy(), damage, attack);
+            if ("COMBO_TRIPLE".equalsIgnoreCase(attackName)) {
+                // Combo: Tackle + Slash + Fireball
+                java.util.List<AttackComponent> combo = java.util.List.of(
+                    new SimpleAttackComponent(combatEngine.createAttack("TACKLE")),
+                    new SimpleAttackComponent(combatEngine.createAttack("SLASH")),
+                    new SimpleAttackComponent(combatEngine.createAttack("FIREBALL"))
+                );
+                CompositeAttack composite = new CompositeAttack(combo);
+                composite.execute(battle.getPlayer(), battle.getEnemy(), battle, combatEngine);
+                // No undo para combos por simplicidad
+            } else {
+                Attack attack = combatEngine.createAttack(attackName);
+                int damage = combatEngine.calculateDamage(battle.getPlayer(), battle.getEnemy(), attack);
+                applyDamage(battle, battle.getPlayer(), battle.getEnemy(), damage, attack);
+            }
     }
 
     public void executeEnemyAttack(String battleId, String attackName) {
