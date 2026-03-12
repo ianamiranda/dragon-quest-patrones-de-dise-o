@@ -204,6 +204,15 @@ Ahora el ataque se ejecuta directamente en `applyDamage()`. No hay registro de "
 
 **Pista:** Piensa en qué necesita saber un cliente para ejecutar un ataque.
 
+#### Solución:
+
+1. **¿Qué problema hay en exponer muchos detalles internos a quien solo quiere "hacer un ataque"?**
+	El cliente debe conocer y coordinar varias clases y métodos internos, lo que aumenta el acoplamiento, la complejidad y el riesgo de errores. Además, si la lógica interna cambia, el cliente debe adaptarse.
+
+2. **¿Qué patrón ofrece una interfaz simple que oculta la complejidad del subsistema?**
+	El patrón adecuado es **Facade**. Se crea un método único (por ejemplo, `performAttack`) que encapsula toda la lógica necesaria para ejecutar un ataque, ocultando los detalles internos y simplificando la integración.
+
+
 ---
 
 ### 9. Ataques compuestos (combo)

@@ -16,6 +16,19 @@ import java.util.UUID;
  * un CombatEngine o BattleRepository, hacemos new aquí.
  */
 public class BattleService {
+        /**
+         * Facade: método simple para ejecutar un ataque en la batalla.
+         * Oculta detalles internos y simplifica la integración.
+         */
+        public void performAttack(String battleId, String attackerType, String attackName) {
+            Battle battle = battleRepository.findById(battleId);
+            if (battle == null || battle.isFinished()) return;
+            if ("player".equalsIgnoreCase(attackerType) && battle.isPlayerTurn()) {
+                executePlayerAttack(battleId, attackName);
+            } else if ("enemy".equalsIgnoreCase(attackerType) && !battle.isPlayerTurn()) {
+                executeEnemyAttack(battleId, attackName);
+            }
+        }
     private AttackCommand lastAttackCommand;
 
     private final CombatEngine combatEngine = new CombatEngine();
