@@ -144,6 +144,27 @@ Ahora mismo solo existe `battle.log()`. Tendrías que añadir código en `Battle
 
 **Pista:** El método `applyDamage` en `BattleService` es el único que sabe cuándo hay daño.
 
+#### Solución:
+
+1. **¿Qué pasa si añades 5 "suscriptores" más?**
+	El método `applyDamage()` crecería mucho, tendrías que modificarlo cada vez que quieras notificar a un nuevo sistema, lo que hace el código difícil de mantener y viola el principio de abierto/cerrado (OCP).
+
+2. **¿Cómo desacoplar "ejecutar ataque" de "notificar a quien le interese"?**
+	Aplicando el patrón **Observer**. Se define una interfaz `DamageObserver` con un método `onDamage(DamageEvent event)`. Cada clase interesada (analytics, auditoría, estadísticas, etc.) implementa esta interfaz y se registra como observador en `BattleService`. Cuando ocurre daño, `BattleService` notifica a todos los observadores sin saber quiénes son ni qué hacen.
+
+3. **¿Qué patrón permite que varios objetos reaccionen a un evento sin que el emisor los conozca?**
+	El patrón es **Observer**. Permite que varios objetos se suscriban a eventos y reaccionen cuando estos ocurren, sin acoplar el emisor a los receptores.
+
+**Ventajas:**
+- Puedes agregar o quitar observadores sin modificar el código central.
+- El emisor (BattleService) no necesita saber quién está escuchando.
+- El sistema es extensible y desacoplado.
+
+**Implementación en el código:**
+- Se creó la interfaz `DamageObserver` y la clase interna `DamageEvent`.
+- `BattleService` mantiene una lista de observadores y los notifica en el método `applyDamage()`.
+- Para agregar un nuevo suscriptor, solo hay que implementar la interfaz y registrarlo, sin tocar la lógica principal.
+
 ---
 
 ### 7. Deshacer el último ataque

@@ -19,6 +19,17 @@ public class BattleService {
 
     private final CombatEngine combatEngine = new CombatEngine();
     private final BattleRepository battleRepository = BattleRepository.getInstance();
+    private final java.util.List<DamageObserver> damageObservers = new java.util.ArrayList<>();
+
+    public void addDamageObserver(DamageObserver observer) {
+        damageObservers.add(observer);
+    }
+
+    private void notifyDamageObservers(DamageObserver.DamageEvent event) {
+        for (DamageObserver observer : damageObservers) {
+            observer.onDamage(event);
+        }
+    }
 
     public static final List<String> PLAYER_ATTACKS = List.of("TACKLE", "SLASH", "FIREBALL", "ICE_BEAM", "POISON_STING", "THUNDER", "METEORO", "CRITICAL_STRIKE");
     public static final List<String> ENEMY_ATTACKS = List.of("TACKLE", "SLASH", "FIREBALL");
@@ -72,6 +83,14 @@ public class BattleService {
         String target = defender == battle.getPlayer() ? "player" : "enemy";
         battle.setLastDamage(damage, target);
         battle.log(attacker.getName() + " usa " + attack.getName() + " y hace " + damage + " de daño a " + defender.getName());
+        // Notificar a los observadores
+        notifyDamageObservers(new DamageObserver.DamageEvent(
+            attack,
+            attacker.getName(),
+            defender.getName(),
+            damage,
+            null // Puedes pasar el battleId si lo tienes disponible
+        ));
         battle.switchTurn();
         if (!defender.isAlive()) {
             battle.finish(attacker.getName());
