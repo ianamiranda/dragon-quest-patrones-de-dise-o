@@ -16,6 +16,7 @@ import java.util.UUID;
  * un CombatEngine o BattleRepository, hacemos new aquí.
  */
 public class BattleService {
+    private AttackCommand lastAttackCommand;
 
     private final CombatEngine combatEngine = new CombatEngine();
     private final BattleRepository battleRepository = BattleRepository.getInstance();
@@ -79,10 +80,11 @@ public class BattleService {
     }
 
     private void applyDamage(Battle battle, Character attacker, Character defender, int damage, Attack attack) {
-        defender.takeDamage(damage);
+        AttackCommand command = new AttackCommand(battle, attacker, defender, attack, damage);
+        command.execute();
+        lastAttackCommand = command;
         String target = defender == battle.getPlayer() ? "player" : "enemy";
         battle.setLastDamage(damage, target);
-        battle.log(attacker.getName() + " usa " + attack.getName() + " y hace " + damage + " de daño a " + defender.getName());
         // Notificar a los observadores
         notifyDamageObservers(new DamageObserver.DamageEvent(
             attack,
@@ -94,6 +96,11 @@ public class BattleService {
         battle.switchTurn();
         if (!defender.isAlive()) {
             battle.finish(attacker.getName());
+        }
+        public void undoLastAttack() {
+            if (lastAttackCommand != null) {
+                lastAttackCommand.undo();
+            }
         }
     }
 

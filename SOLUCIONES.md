@@ -180,6 +180,18 @@ Ahora el ataque se ejecuta directamente en `applyDamage()`. No hay registro de "
 
 **Pista:** La lógica del ataque está en `BattleService.applyDamage()`.
 
+#### Solución:
+
+1. **¿Qué tendrías que cambiar para poder "deshacer"?**
+	Es necesario registrar cada ataque como un objeto que encapsule toda la información y permita revertirlo. Así, puedes guardar el último ataque y deshacerlo cuando se solicite.
+
+2. **¿Cómo encapsular una acción (ataque) para poder ejecutarla, guardarla y revertirla?**
+	Aplicando el patrón **Command**. Se crea una clase `AttackCommand` que representa el ataque, con métodos `execute()` y `undo()`. Cuando se aplica daño, se ejecuta el comando y se guarda como el último ataque. Para deshacer, se llama a `undo()` sobre ese comando.
+
+3. **¿Qué patrón trata las acciones como objetos de primera clase?**
+	El patrón es **Command**. Permite encapsular acciones como objetos, guardarlas, ejecutarlas, deshacerlas o encolarlas.
+
+
 ---
 
 ### 8. Simplificar la API del combate

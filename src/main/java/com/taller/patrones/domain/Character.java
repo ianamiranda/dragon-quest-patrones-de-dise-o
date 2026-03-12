@@ -4,6 +4,9 @@ package com.taller.patrones.domain;
  * Representa un personaje en combate.
  */
 public class Character {
+    public void heal(int amount) {
+        this.currentHp = Math.min(maxHp, currentHp + amount);
+    }
 
     private final String name;
     private int currentHp;
